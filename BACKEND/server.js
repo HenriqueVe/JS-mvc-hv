@@ -1,15 +1,15 @@
-const express = require("express");
+const express = require("express"); 
 const fs = require("fs").promises;
 const cors = require("cors");
 
 const app = express();
-const port = 7000;
+const port = 7000;  
 
 app.use(express.json());
 app.use(cors());
 
 //Método de retorno dos dados em data.json
-app.get('/api/data', async (req, res) => {
+app.get("/api/data", async (req, res) => {
   try {
     const data = await fs.readFile("data.json", "utf8");
     res.json(JSON.parse(data));
@@ -17,7 +17,6 @@ app.get('/api/data', async (req, res) => {
     res.status(500).json({ error: "Não foi possível carregar os dados" });
   }
 });
-
 
 //Método para escrever/sobrescrever dados em data.json
 app.post("/api/save", async (req, res) => {
@@ -34,6 +33,7 @@ app.post("/api/save", async (req, res) => {
     res.status(500).json({ error: "Não foi possível salvar os dados." });
   }
 });
+
 // Startar o server
 
 app.listen(port, () => {
